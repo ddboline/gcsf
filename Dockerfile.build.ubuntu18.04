@@ -1,0 +1,8 @@
+FROM rust_stable:latest
+MAINTAINER Daniel Boline
+
+WORKDIR /gcsf
+
+ADD Cargo.toml /gcsf
+ADD src /gcsf/src
+ADD Makefile /gcsf
