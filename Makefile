@@ -7,7 +7,7 @@ build_type := release
 all:
 	mkdir -p build/ && \
 	cp Dockerfile.build.ubuntu18.04 build/Dockerfile && \
-	cp -a Cargo.toml src Makefile build/ && \
+	cp -a Cargo.toml src scripts Makefile build/ && \
 	cd build/ && \
 	docker build -t gcsf/build_rust:ubuntu18.04 . && \
 	cd ../ && \
@@ -21,7 +21,7 @@ cleanup:
 package:
 	docker run --cidfile $(cidfile) -v `pwd`/target:/gcsf/target gcsf/build_rust:ubuntu18.04 \
         /gcsf/scripts/build_deb_docker.sh $(version) $(release)
-	docker cp `cat $(cidfile)`:/gcsf/garmin-rust_$(version)-$(release)_amd64.deb .
+	docker cp `cat $(cidfile)`:/gcsf/gcsf_$(version)-$(release)_amd64.deb .
 	docker rm `cat $(cidfile)`
 	rm $(cidfile)
 

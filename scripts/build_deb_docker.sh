@@ -3,6 +3,8 @@
 VERSION="$1"
 RELEASE="$2"
 
+apt-get update && apt-get install -y libfuse-dev
+
 . ~/.cargo/env
 
 cargo build --release
